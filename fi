@@ -1,0 +1,19 @@
+<?php
+include 'db.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_usuario = $_POST['id_usuario'];
+    $id_ruta = $_POST['id_ruta'];
+
+    // Inserta el boleto en la base de datos
+    $sql = "INSERT INTO boletos (id_usuario, id_ruta, fecha_compra) VALUES ('$id_usuario', '$id_ruta', CURDATE())";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Boleto comprado exitosamente.";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
